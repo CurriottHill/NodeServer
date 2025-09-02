@@ -123,6 +123,7 @@ export default async function handler(req, res) {
       msRemaining = Math.max(0, WINDOW_MS - (now - requestTimes[0]))
     }
     const secondsRemaining = Math.ceil(msRemaining / 1000)
+    res.setHeader('Cache-Control', 'no-store')
     return res.status(200).json({
       limit: reached ? 1 : 0,
       remaining,
